@@ -36,5 +36,5 @@ class SigninPage(BasePage):
     @allure.step('Поиск всплывающего алерта браузера и получение текста из него')
     def find_alert_popup_and_get_text(self):
         self.wait.until(ec.alert_is_present())
-        alert = self.driver.switch_to.alert
+        alert = self.switch_to_alert()
         return alert.text

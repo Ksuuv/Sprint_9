@@ -89,3 +89,7 @@ class BasePage():
     def press_escape_btn(self):
         actions = ActionChains(self.driver)
         actions.send_keys(Keys.ESCAPE).perform()
+
+    @allure.step('Переключение на окно с алертом браузера')
+    def switch_to_alert(self):
+        return self.driver.switch_to.alert
