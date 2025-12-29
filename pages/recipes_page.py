@@ -1,10 +1,7 @@
 import allure
 from pages.base_page import BasePage
-from locators.general_locators import GeneralLocators
 from locators.recipes_locators import RecipesLocators
 from data import RecipeData
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
 
 
 class RecipesPage(BasePage):
@@ -16,15 +13,11 @@ class RecipesPage(BasePage):
     
     @allure.step('Поиск тайтла Рецепты c ожиданием')
     def find_recipes_title_with_wait(self):
-        return self.find_element_with_wait(RecipesLocators.TXT_RECIPES)
-
-    @allure.step('Клик на кнопку Создать рецепт в хедере')
-    def click_create_recipe_btn(self):
-        self.click_to_element(GeneralLocators.BTN_CREATE_RECIPES)
+        self.find_element_with_wait(RecipesLocators.TXT_RECIPES)
 
     @allure.step('Поиск тайтла Создание рецепта c ожиданием')
     def find_creating_recipes_title_with_wait(self):
-        self.find_element_with_wait(RecipesLocators.TXT_CREATING_RECIPE)
+        return self.find_element_with_wait(RecipesLocators.TXT_CREATING_RECIPE)
 
     @allure.step('Заполнение поля Название рецепта')
     def filling_recipe_name_field(self):
@@ -65,10 +58,9 @@ class RecipesPage(BasePage):
     @allure.step('Загрузка картинки на сервер через поле Выбрать файл')
     def upload_image(self, text):
         file_input = self.find_element(RecipesLocators.INPUT_UPLOAD_FILE)
-        self.driver.execute_script("arguments[0].style.display='block';", file_input)
+        self.make_element_visible(file_input)
         file_input.send_keys(text)
-        actions = ActionChains(self.driver)
-        actions.send_keys(Keys.ESCAPE).perform()
+        self.press_escape_btn()
 
     @allure.step('Клик на кнопку Создать рецепт для создания рецепта')
     def click_create_recipe_bottom(self):

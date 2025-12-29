@@ -2,6 +2,8 @@ import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from locators.general_locators import GeneralLocators
 from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class BasePage():
@@ -70,3 +72,20 @@ class BasePage():
     @allure.step('Поиск кнопки Создать рецепт')
     def find_create_recipe_btn(self):
         self.find_element_with_wait(GeneralLocators.BTN_CREATE_RECIPES)
+
+    @allure.step('Клик на кнопку Создать рецепт в хедере')
+    def click_create_recipe_btn(self):
+        self.click_to_element(GeneralLocators.BTN_CREATE_RECIPES)
+
+    @allure.step('Клик на кнопку Создать аккаунт')
+    def find_click_create_btn(self):
+        self.click_to_element(GeneralLocators.BTN_CREATE_ACCOUNT)
+
+    @allure.step('Скрипт чтобы сделать элемент видимым')
+    def make_element_visible(self, element):
+        self.driver.execute_script("arguments[0].style.display='block';", element)
+
+    @allure.step('Нажать кнопку ESCAPE')
+    def press_escape_btn(self):
+        actions = ActionChains(self.driver)
+        actions.send_keys(Keys.ESCAPE).perform()

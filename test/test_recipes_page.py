@@ -11,7 +11,7 @@ class TestRecipesPage:
 
         recipes_page.click_create_recipe_btn()
 
-        assert recipes_page.find_recipes_title_with_wait, 'Тайтл Рецепты не найден'
+        assert recipes_page.find_creating_recipes_title_with_wait(), 'Тайтл Рецепты не найден'
 
     @allure.title('Можно создать рецепт, заполнив все поля')
     def test_creating_recipe(self, auth_user, get_absolute_image_path):

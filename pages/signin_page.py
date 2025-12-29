@@ -1,6 +1,5 @@
 import allure
 from pages.base_page import BasePage
-from locators.general_locators import GeneralLocators
 from locators.signin_locators import SigninLocators
 from selenium.webdriver.support import expected_conditions as ec
 from data import UserData
@@ -8,10 +7,6 @@ from data import UserData
 
 class SigninPage(BasePage):
 
-
-    @allure.step('Клик на кнопку Создать аккаунт')
-    def find_click_create_btn(self):
-        self.click_to_element(GeneralLocators.BTN_CREATE_ACCOUNT)
 
     @allure.step('Поиск формы авторизации')
     def find_auth_form(self):
