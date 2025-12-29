@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  chrome:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - "4444:4444"
+    shm_size: 2gb
+  
+  tests:
+    build: .
+    depends_on:
+      - chrome
+    environment:
+      - SELENIUM_HUB_URL=http://chrome:4444/wd/hub
+      - CI=true
+    command: sh -c "sleep 20 && python -m pytest test/ -v"
